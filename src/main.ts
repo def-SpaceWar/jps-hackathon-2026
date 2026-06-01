@@ -223,7 +223,7 @@ const CONTINUE_LABEL = {
     text: "Continue?",
 };
 
-for (let caseNum = 11; caseNum <= 10;) {
+for (let caseNum = 1; caseNum <= 10;) {
     const player = new Player();
     //player.location = "oproom1";
     //player.location = "radiology";
