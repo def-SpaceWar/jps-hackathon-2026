@@ -76,9 +76,12 @@ export class AudioManager {
         }
 
         audio.play();
+        if (audio.paused) alert("ENABLE AUTOPLAY AND RELOAD PAGE");
     }
 
     static playMusic(id: string, fadeInDuration: number = 0): void {
+        if (id == this.currentMusic) return;
+        
         const source = this.sources.get(id);
         if (!source) {
             console.warn(`Music "${id}" not found`);

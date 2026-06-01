@@ -1,3 +1,14 @@
+/* @import url("public/ttf/ringus/RingusItalic-9Mm1B.ttf"); */
+
+@font-face {
+    font-family: "Ringus";
+    src: url("/ttf/ringus/Ringus-lxLoV.ttf");
+}
+
+* {
+  font-family: "Ringus";
+}
+
 canvas {
   position: absolute;
   background-color: #000;
