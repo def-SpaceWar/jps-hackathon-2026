@@ -97,7 +97,8 @@ const radiologyBg = await ImageManager.preload(radiologyUrl);
 const oproom2Bg = await ImageManager.preload(op2Url);
 const oproom2Hypnosis = await ImageManager.preload(hypnosisUrl);
 
-alert("autoplay is required for audio to be played!");
+alert("autoplay is required for audio to be played! Click on the screen within the next second.");
+await runTimer(() => {}, 1_000, 1).finish;
 AudioManager.playMusic("mainbg");
 
 {
