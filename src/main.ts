@@ -41,7 +41,13 @@ import mriSpinningUrl from "./assets/sfx/mriSpinning.mp3";
 import hypnosisDroningUrl from "./assets/sfx/hypnosisDroning.mp3";
 import { Player } from "./player";
 import { AudioManager } from "./audio";
-import { getVideo, playVideo, preloadVideo, renderVideoFrame } from "./video";
+import {
+    clearVideoCache,
+    getVideo,
+    playVideo,
+    preloadVideo,
+    renderVideoFrame,
+} from "./video";
 import { ImageManager } from "./render/image";
 import {
     renderButton,
@@ -216,7 +222,7 @@ const CONTINUE_LABEL = {
     text: "Continue?",
 };
 
-for (let caseNum = 1; caseNum <= 10;) {
+for (let caseNum = 11; caseNum <= 10;) {
     const player = new Player();
     //player.location = "oproom1";
     //player.location = "radiology";
@@ -866,7 +872,7 @@ for (let caseNum = 1; caseNum <= 10;) {
                 stuff.fillStyle = "green";
                 TextRenderer.draw(
                     ctx,
-                    `Case ${caseNum == 10 ? "X" : caseNum}`,
+                    `Case ${Math.min(10, caseNum) == 10 ? "X" : caseNum}`,
                     stuff,
                 );
             }
@@ -1044,3 +1050,19 @@ for (let caseNum = 1; caseNum <= 10;) {
 alert(
     "Thanks for playing! This game was made in <72 hours for the JPS Hackathon 2026 by Aryan, Swarup, Arshdeep, and Ailesh! We hope you enjoyed it!",
 );
+
+clearVideoCache();
+import endSceneVideo from "./assets/endscene.mov";
+await preloadVideo(endSceneVideo);
+setCanvasWidth(4096);
+autoResizeCanvas();
+renderLoop(async () => {
+    ctx.clearRect(0, 0, canvas.width / 2, canvas.height / 2);
+    ctx.save();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    await playVideo(
+        endSceneVideo,
+        {},
+    );
+    ctx.restore();
+});
